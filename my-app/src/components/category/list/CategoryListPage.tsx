@@ -15,6 +15,18 @@ const CategoryListPage = () => {
             });
     },[]);
 
+
+    const handleDelete = (id: number) => {
+        http_common
+            .delete(`api/category/${id}`)
+            .then(() => {
+                setList((prevList) => prevList.filter((item) => item.id !== id));
+            })
+            .catch((error) => {
+                console.log("Помилка під час видалення категорії:", error);
+            });
+    };
+
     const mapList = list.map(item=>{
         return(
             <tr key={item.id}>
@@ -23,8 +35,10 @@ const CategoryListPage = () => {
                 <td>{item.image}</td>
                 <td>{item.description}</td>
                 <td>
-                    <Link to={`/category/edit/${item.id}`} className={"btn btn-success"}>Змінити</Link></td>
-
+                    <Link to={`/category/edit/${item.id}`} className={"btn btn-success"}>Змінити</Link>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(item.id)}>Delete</button></td>
             </tr>
         );
     });

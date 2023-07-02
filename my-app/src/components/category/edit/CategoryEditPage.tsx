@@ -3,6 +3,7 @@ import {useFormik} from "formik";
 import http_common from "../../../http_common";
 import {ICategoryItem} from "../list/types";
 import {useNavigate, useParams} from "react-router-dom";
+import axios from "axios/index";
 
 const CategoryEditPage = () => {
     const {id} = useParams();
@@ -16,7 +17,16 @@ const CategoryEditPage = () => {
 
     const navigate = useNavigate();
     const onFormikSubmit = async (values: ICategoryEdit) => {
-        console.log("Edit category data", values);
+        try {
+            const result = await http_common.post(`api/category/edit/${id}`, values, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            navigate("../..");
+        } catch {
+            console.log("Server error");
+        }
     }
 
     const formik = useFormik({
