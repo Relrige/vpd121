@@ -38,7 +38,8 @@ const CategoryListPage = () => {
                     <Link to={`/category/edit/${item.id}`} className={"btn btn-success"}>Змінити</Link>
                 <button
                     className="btn btn-danger"
-                    onClick={() => handleDelete(item.id)}>Delete</button></td>
+                    onClick={() => handleDelete(item.id)}> Delete </button>
+                </td>
             </tr>
         );
     });
