@@ -4,6 +4,7 @@ import {ICategoryItem} from "./types";
 import {Link} from "react-router-dom";
 import axios from "axios"
 import http_common from "../../../http_common";
+import { APP_ENV } from "../../../env";
 
 const CategoryListPage = () => {
     const [list, setList] = useState<ICategoryItem[]>([]);
@@ -32,7 +33,7 @@ const CategoryListPage = () => {
             <tr key={item.id}>
                 <th scope="row">{item.id}</th>
                 <td>{item.name}</td>
-                <td>{item.image}</td>
+                <td><img src={`${APP_ENV.BASE_URL}uploads/150_${item.image}`} alt="фото" width={150}/></td>
                 <td>{item.description}</td>
                 <td>
                     <Link to={`/category/edit/${item.id}`} className={"btn btn-success"}>Змінити</Link>

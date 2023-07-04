@@ -123,6 +123,7 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/zircote/swagger-php" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/intervention/image" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

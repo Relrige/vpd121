@@ -3,19 +3,31 @@ import {ICategoryCreate} from "./types";
 import {useNavigate} from "react-router-dom";
 import {useFormik} from "formik";
 import axios from "axios";
+import defaultImage from "../../../assets/default.jpg"
+import { ChangeEvent } from "react";
+import http_common from "../../../http_common";
+import { ICategoryItem } from "../list/types";
+
+
 const CategoryCreatePage = () => {
     const navigate = useNavigate();
 
     const init: ICategoryCreate = {
         name: "",
-        image: "",
+        image: null,
         description: ""
     };
 
     const onFormikSubmit = async (values: ICategoryCreate) => {
         //console.log("Send Formik Data", values);
         try {
-            const result = await axios.post("http://laravel.vpd121.com/api/category", values);
+
+            const result = await http_common.post(`api/category`, values, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            
             navigate("/");
         }
         catch {
@@ -27,8 +39,24 @@ const CategoryCreatePage = () => {
         onSubmit: onFormikSubmit,
         initialValues: init
     });
+    const {values, handleChange, handleSubmit,setFieldValue } = formik;
 
-    const {values, handleChange, handleSubmit } = formik;
+    const onChangeFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if(files)
+        {
+            const file = files[0];
+            if(file) {
+                const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+                if (!allowedTypes.includes(file.type)) {
+                    alert("Не допустимий тип файлу");
+                    return;
+                }
+                setFieldValue(e.target.name, file);
+            }
+        }
+    }
+
 
     return (
         <>
@@ -47,10 +75,15 @@ const CategoryCreatePage = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="image" className="form-label">Фото</label>
-                    <input type="text" className="form-control" id="image"
-                           value={values.image}
-                           onChange={handleChange}
+                <label htmlFor="image">
+                <img src={values.image==null ? defaultImage: URL.createObjectURL(values.image)}
+                                 alt="фото"
+                                 width={200}
+                                 style={{cursor: "pointer"}}/></label>
+
+                    <input type="file" id="image"
+                           className="d-none"
+                           onChange={onChangeFileHandler}
                            name="image"/>
                 </div>
 

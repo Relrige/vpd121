@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Validator;
-
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -33,7 +33,7 @@ class CategoryController extends Controller
      *                 required={},
      *                 @OA\Property(
      *                     property="image",
-     *                     type="string"
+     *                     type="file"
      *                 ),
      *                 @OA\Property(
      *                     property="name",
@@ -67,6 +67,23 @@ class CategoryController extends Controller
             return response()->json($validation->errors(), 400,
                 ["Content-Type"=>"application/json;charset=UTF-8", "Charset" => "utf-8"], JSON_UNESCAPED_UNICODE);
         }
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = uniqid().'.'.$image->getClientOriginalExtension();
+            $sizes =[50,150,300,600,1200];
+            foreach ($sizes as $size)
+            {
+                $fileSave = $size.'_'.$filename;
+                $resizedImage = Image::make($image)->resize($size, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->encode();
+                $path = public_path('uploads/' . $fileSave);
+                file_put_contents($path, $resizedImage);
+            }
+                $input['image'] = $filename;
+        }
+
+
         $category = Category::create($input);
         return response()->json($category, 201,
             ["Content-Type"=>"application/json;charset=UTF-8", "Charset" => "utf-8"], JSON_UNESCAPED_UNICODE);
@@ -124,7 +141,7 @@ class CategoryController extends Controller
      *                 required={"name"},
      *                 @OA\Property(
      *                     property="image",
-     *                     type="string"
+     *                     type="file"
      *                 ),
      *                 @OA\Property(
      *                     property="name",
@@ -145,17 +162,37 @@ class CategoryController extends Controller
         $input = $request->all();
         $message = array(
             'name.required'=>"Вкажіть назву категорії",
-            'image.required'=>"Вкажіть фото категорії",
             'description.required'=>"Вкажіть опис категорії",
         );
         $validator = Validator::make($input,[
             'name'=>'required',
-            'image'=>'required',
             'description'=>'required'
         ], $message);
         if($validator->fails()) {
             return response()->json($validator->errors(), 400,
                 ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        }
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = uniqid().'.'.$image->getClientOriginalExtension();
+            $sizes =[50,150,300,600,1200];
+            foreach ($sizes as $size) {
+                $fileDelete = $size.'_'.$category->image;
+                $removePath = public_path('uploads/' . $fileDelete);
+                if (file_exists($removePath)) {
+                    unlink($removePath);
+                }
+            }
+            foreach ($sizes as $size)
+            {
+                $fileSave = $size.'_'.$filename;
+                $resizedImage = Image::make($image)->resize($size, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->encode();
+                $path = public_path('uploads/' . $fileSave);
+                file_put_contents($path, $resizedImage);
+            }
+            $input['image'] = $filename;
         }
         $category->update($input);
         return response()->json($category, 200,

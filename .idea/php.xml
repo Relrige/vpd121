@@ -126,6 +126,7 @@
       <path value="$PROJECT_DIR$/laravel.vpd121.com/vendor/swagger-api/swagger-ui" />
       <path value="$PROJECT_DIR$/laravel.vpd121.com/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/laravel.vpd121.com/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/laravel.vpd121.com/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
