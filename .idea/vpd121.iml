@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/darkaonline/l5-swagger" />
@@ -124,6 +126,11 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/zircote/swagger-php" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/intervention/image" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/stella-maris/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/tymon/jwt-auth" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
