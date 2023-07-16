@@ -9,8 +9,6 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel.vpd121.com/tests/Unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/laravel.vpd121.com/vendor/darkaonline/l5-swagger" />
