@@ -316,6 +316,126 @@
                     }
                 }
             }
+        },
+        "/api/product_images": {
+            "get": {
+                "tags": [
+                    "ProductImage"
+                ],
+                "operationId": "83e08432ef5eff3f18873b1c157149d4",
+                "responses": {
+                    "200": {
+                        "description": "Get All Product Images."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ProductImage"
+                ],
+                "operationId": "845179ad1d15d9f07c272003192c426a",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "product_id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "priority": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Add Product."
+                    }
+                }
+            }
+        },
+        "/api/product_images/{id}": {
+            "get": {
+                "tags": [
+                    "ProductImage"
+                ],
+                "operationId": "17b9ebda9cf49761a5af0e649022a083",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ідентифікатор картинки",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List Pictures."
+                    },
+                    "404": {
+                        "description": "Wrong id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong Picture Id has been sent. Pls try another one."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ProductImage"
+                ],
+                "operationId": "d8183c0fc9f5cf86069d2d42d2a6f54e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ідентифікатор Картинки",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успішне видалення картинки"
+                    },
+                    "404": {
+                        "description": "Картинку не знайдено"
+                    },
+                    "401": {
+                        "description": "Не авторизований"
+                    }
+                }
+            }
         }
     }
 }

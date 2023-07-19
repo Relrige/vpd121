@@ -1,0 +1,9 @@
+body {
+    margin-bottom: 60px;
+}
+
+.container-products img {
+    height: 200px;
+    object-fit: contain;
+    padding: 10px;
+}

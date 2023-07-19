@@ -38,4 +38,7 @@ Route::post("/product",[\App\Http\Controllers\ProductController::class,'create']
 Route::post("/product/edit/{id}",[\App\Http\Controllers\ProductController::class,'edit']);
 Route::delete("/product/{id}",[\App\Http\Controllers\ProductController::class,'delete']);
 
-
+Route::get("/product_images",[\App\Http\Controllers\ProductImagesController::class,'index']);
+Route::post("/product_images",[\App\Http\Controllers\ProductImagesController::class,'create']);
+Route::get("/product_images/{id}",[\App\Http\Controllers\ProductImagesController::class,'getById']);
+Route::delete("/product_images/{id}",[\App\Http\Controllers\ProductImagesController::class,'delete']);
